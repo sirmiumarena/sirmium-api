@@ -27,11 +27,13 @@ def home():
 def server_status():
 
     try:
+        # Dohvata informacije o CS 1.6 serveru
         info = a2s.info(
             SERVER_ADDRESS,
             timeout=3.0
         )
 
+        # Dohvata listu igrača
         try:
             players = a2s.players(
                 SERVER_ADDRESS,
@@ -78,15 +80,16 @@ def server_status():
 
 
 if __name__ == "__main__":
+
     print("---------------------------------------")
-    print("      SIRMIUM ARENA API")
+    print("        SIRMIUM ARENA API")
     print("---------------------------------------")
     print(f"CS 1.6 SERVER: {SERVER_IP}:{SERVER_PORT}")
-    print("API: http://127.0.0.1:8080")
+    print("API PORT: 8080")
     print("---------------------------------------")
 
     app.run(
         host="0.0.0.0",
-        port=8080,
-        debug=True
+        port=int(os.getenv("PORT", "8080")),
+        debug=False
     )
